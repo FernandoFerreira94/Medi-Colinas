@@ -1,15 +1,20 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Roboto, Inter } from "next/font/google";
 import "./globals.css";
+import { AppProvider } from "@/context/AppProvider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const roboto = Roboto({
+  weight: ["400", "700"], // Especifique os pesos que você vai usar
+  style: ["normal", "italic"],
   subsets: ["latin"],
+  display: "swap",
+  variable: "--font-roboto",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
   subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -25,9 +30,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${roboto.variable} ${inter.variable} font-sans antialiased bg-gray-50`}
       >
-        {children}
+        <AppProvider>{children}</AppProvider>
       </body>
     </html>
   );
